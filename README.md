@@ -18,3 +18,17 @@
  - 命名一定要语义化
  - 一定要规定参数的类型,返回值类型
  - 尽量写好注释
+
+  - eg:
+       ```js
+          /**
+          * 加法
+          * @param {number} x
+          * @param {number} y
+          * @return {number}
+          */
+          const sum = (x,y)=>{
+              return x + y
+          }
+
+       ```
