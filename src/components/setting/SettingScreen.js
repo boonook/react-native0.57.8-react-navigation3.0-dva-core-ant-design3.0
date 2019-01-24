@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Button,TextInput,StatusBar,TouchableOpacity,FlatList,Image,ScrollView } from 'react-native';
+import {
+    Modal,
+    WhiteSpace,
+    WingBlank,
+    Toast,
+    Provider,
+} from '@ant-design/react-native';
+import {BasicModalExample} from "../messageModal/MessageModal";
 type Props = {};
 export default class SettingScreen extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -10,27 +18,16 @@ export default class SettingScreen extends Component {
     render() {
         const {navigation} = this.props;
         return (
-            <View>
-                <View style={styles.header}>
-                    <View style={styles.flex1}>
-                        <TouchableOpacity onPress={() =>  navigation.openDrawer()} style={{alignSelf:'flex-start',marginLeft:10}}>
-                            <Image source={require('../../assets/images/logo.png')} style={styles.avatar} />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.flex1}>
-                        <Text style={styles.title}>设置</Text>
-                    </View>
-                    <View style={styles.flex1}>
-                        <TouchableOpacity onPress={() =>{
-                            navigation.navigate('FriendAdd')
-                        }} style={{alignSelf:'flex-end',marginRight:10}}>
-                            <Text style={styles.add}>添加</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View>
-                    <Text style={styles.title}>设置</Text>
-                </View>
+            <View style={styles.container}>
+                <Button
+                    title={'展开'}
+                    onPress={() => {
+                        this.refs.son.setModalVisible(true)
+                    }}
+                />
+                <Provider style={{marginTop:100}}>
+                    <BasicModalExample ref='son'/>
+                </Provider>
             </View>
         );
     }
@@ -46,8 +43,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     content:{

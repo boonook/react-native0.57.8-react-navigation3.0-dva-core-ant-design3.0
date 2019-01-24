@@ -10,7 +10,7 @@ export default class App extends Component{
                 ModelsArr.push(models[i])
             }
             return ModelsArr;
-        })(models)
+        })(models);
 
         const app = dva({
             initialState: {},

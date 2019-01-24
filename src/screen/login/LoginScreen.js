@@ -19,7 +19,7 @@ export default class LoginScreen extends Component {
                 index:'世界你好'
             }
         })
-    }
+    };
     changeq = ()=>{
         const { dispatch } = this.props;
         dispatch({
@@ -62,6 +62,9 @@ export default class LoginScreen extends Component {
                 </View>
                 <Text>
                     hello {global.index}
+                </Text>
+                <Text>
+                    data {global.str}
                 </Text>
                 <Button title='同步数据' onPress={this.changew}/>
                 <Button title='异步数据' onPress={this.changeq}/>

@@ -1,14 +1,15 @@
+
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image,ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
 export default class MessageScreen extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             header: () => null, // 隐藏头部
         }
     };
+
     render() {
         const {navigation} = this.props;
-
         return (
             <View>
                 <View style={styles.header}>
@@ -18,7 +19,7 @@ export default class MessageScreen extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.flex1}>
-                        <Text style={styles.title}>朋友</Text>
+                        <Text style={styles.title}>消息</Text>
                     </View>
                     <View style={styles.flex1}>
                         <TouchableOpacity onPress={() =>{
@@ -28,7 +29,10 @@ export default class MessageScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <Text>测试</Text>
+                <Button
+                    title='消息'
+                    onPress={() =>  navigation.openDrawer()}
+                />
             </View>
         );
     }
