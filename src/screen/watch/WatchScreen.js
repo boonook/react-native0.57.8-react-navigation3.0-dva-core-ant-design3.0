@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
-
+import CarouselNav from "../../components/carousel/Carousel";
 export default class WatchScreen extends Component {
     static navigationOptions = {
         header:null
     };
+
     render() {
         const {navigation} = this.props;
         return (
@@ -26,7 +27,9 @@ export default class WatchScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <Text style={styles.title}>看点</Text>
+                <View>
+                    <CarouselNav/>
+                </View>
             </View>
         );
     }
@@ -57,5 +60,8 @@ const styles = StyleSheet.create({
     add: {
         fontSize: 18,
         color: '#fff',
-    }
+    },
+    wrapper: {
+        backgroundColor: '#fff',
+    },
 });
