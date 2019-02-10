@@ -1,13 +1,13 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
+import { DatePicker, List ,Provider,Icon} from '@ant-design/react-native'
 export default class FriendScreen extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             header: () => null, // 隐藏头部
         }
     };
-
     render() {
         const {navigation} = this.props;
         return (
@@ -19,15 +19,33 @@ export default class FriendScreen extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.flex1}>
-                        <Text style={styles.title}>朋友</Text>
+                        <Text style={styles.title}>联系人</Text>
                     </View>
                     <View style={styles.flex1}>
                         <TouchableOpacity onPress={() =>{
                             navigation.navigate('FriendAdd')
                         }} style={{alignSelf:'flex-end',marginRight:10}}>
-                            <Text style={styles.add}>添加</Text>
+                            <Icon style={{color:'#fff',paddingLeft:10}} name={'usergroup-add'}/>
                         </TouchableOpacity>
                     </View>
+                </View>
+                <View style={styles.container}>
+                    {/*<Video*/}
+                        {/*ref={(ref) => {*/}
+                            {/*this.video = ref*/}
+                        {/*}}*/}
+                        {/*//来自本地的MP4视频*/}
+                        {/*source={require('../../assets/video/gbqq.mp4')}*/}
+                        {/*//1.0表示默认速率*/}
+                        {/*rate={1.0}*/}
+                        {/*//图片等比例缩放*/}
+                        {/*resizeMode='contain'*/}
+                        {/*//不重复播放*/}
+                        {/*repeat={false}*/}
+                        {/*//默认音量*/}
+                        {/*volume={1.0}*/}
+                        {/*//样式*/}
+                        {/*style={styles.backgroundVideo}/>*/}
                 </View>
                 <Button
                     title='朋友'
@@ -62,5 +80,9 @@ const styles = StyleSheet.create({
     add: {
         fontSize: 18,
         color: '#fff',
-    }
+    },
+    container:{
+        flex: 1,
+    },
+    backgroundVideo:{}
 });

@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
-import { DatePicker, List ,Provider} from '@ant-design/react-native'
+import { DatePicker, List ,Provider,Icon} from '@ant-design/react-native'
 export default class MessageScreen extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +41,7 @@ export default class MessageScreen extends Component {
                             <TouchableOpacity onPress={() =>{
                                 navigation.navigate('FriendAdd')
                             }} style={{alignSelf:'flex-end',marginRight:10}}>
-                                <Text style={styles.add}>添加</Text>
+                                <Icon style={{color:'#fff',paddingLeft:10}} name={'plus'}/>
                             </TouchableOpacity>
                         </View>
                     </View>

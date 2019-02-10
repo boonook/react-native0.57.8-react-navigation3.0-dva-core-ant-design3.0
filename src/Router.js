@@ -13,6 +13,8 @@ import ActiveScreen from "./screen/active/ActiveScreen";
 import WatchScreen from "./screen/watch/WatchScreen";
 import LoginScreen from "./screen/login/LoginScreen";
 import SettingScreen from "./components/setting/SettingScreen";
+import ForgetPassword from "./screen/forgetPassword/ForgetPassword";
+import Registered from "./screen/registered/Registered";
 
 const appTabNavigator = createBottomTabNavigator({
     Message:{
@@ -122,6 +124,12 @@ const  StackNavigator = createStackNavigator({
     },
     Home:{
         screen:DrawerNavigator,
+    },
+    ForgetPassword:{
+        screen:ForgetPassword
+    },
+    Registered:{
+        screen:Registered
     }
 },{
     headerMode: 'none',

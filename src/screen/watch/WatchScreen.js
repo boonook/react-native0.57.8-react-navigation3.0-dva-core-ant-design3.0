@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
 import CarouselNav from "../../components/carousel/Carousel";
+import { List, SwipeAction,Icon } from '@ant-design/react-native';
 export default class WatchScreen extends Component {
     static navigationOptions = {
         header:null
@@ -23,7 +24,7 @@ export default class WatchScreen extends Component {
                         <TouchableOpacity onPress={() =>{
                             navigation.navigate('FriendAdd')
                         }} style={{alignSelf:'flex-end',marginRight:10}}>
-                            <Text style={styles.add}>添加</Text>
+                            <Icon style={{color:'#fff',paddingLeft:10}} name={'eye'}/>
                         </TouchableOpacity>
                     </View>
                 </View>
