@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
-import { DatePicker, List ,Provider,Icon} from '@ant-design/react-native'
+import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image,ScrollView} from 'react-native';
+import { DatePicker, List ,Provider,Icon,NoticeBar, WhiteSpace} from '@ant-design/react-native'
 export default class MessageScreen extends Component {
     constructor(props) {
         super(props);
@@ -10,12 +10,13 @@ export default class MessageScreen extends Component {
         };
         this.state = {
             value: undefined,
+            state:false
         };
     }
 
     onChange = (value: any) => {
         this.setState({ value });
-    }
+    };
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -38,32 +39,66 @@ export default class MessageScreen extends Component {
                             <Text style={styles.title}>消息</Text>
                         </View>
                         <View style={styles.flex1}>
-                            <TouchableOpacity onPress={() =>{
-                                navigation.navigate('FriendAdd')
-                            }} style={{alignSelf:'flex-end',marginRight:10}}>
+                            <TouchableOpacity
+                                onPress={() => this.setState({ state: !this.state.state })}
+                                style={{alignSelf:'flex-end',marginRight:10}}>
                                 <Icon style={{color:'#fff',paddingLeft:10}} name={'plus'}/>
                             </TouchableOpacity>
                         </View>
                     </View>
+                    {
+                        this.state.state == false ?( null):(
+                            <View style={{position:'absolute',right:5,top:44,elevation: 99,}}>
+                                <View
+                                    style={{
+                                        width: 0,
+                                        height: 0,
+                                        borderColor: 'transparent',
+                                        borderLeftWidth: 7,
+                                        borderBottomWidth: 10,
+                                        borderRightWidth: 7,
+                                        borderBottomColor: '#fff',
+                                        marginLeft:80
+                                    }}
+                                />
+                                <View style={{backgroundColor:'#fff',padding:4,borderRadius:5}}>
+                                    <Text style={{paddingTop:5,paddingBottom:5,borderBottomWidth:1,borderBottomColor:'#eee'}}><Icon style={{color:'#000',paddingLeft:10}} name={'user'}/>创建群聊</Text>
+                                    <Text style={{paddingTop:5,paddingBottom:5,borderBottomWidth:1,borderBottomColor:'#eee'}}><Icon style={{color:'#000',paddingLeft:10}} name={'user'}/>加好友/群</Text>
+                                    <Text style={{paddingTop:5,paddingBottom:5,borderBottomWidth:1,borderBottomColor:'#eee'}}><Icon style={{color:'#000',paddingLeft:10}} name={'user'}/>扫一扫</Text>
+                                    <Text style={{paddingTop:5,paddingBottom:5,borderBottomWidth:1,borderBottomColor:'#eee'}}><Icon style={{color:'#000',paddingLeft:10}} name={'user'}/>面对面快传</Text>
+                                    <Text style={{paddingTop:5,paddingBottom:5,borderBottomWidth:1,borderBottomColor:'#eee'}}><Icon style={{color:'#000',paddingLeft:10}} name={'user'}/>付款</Text>
+                                </View>
+                            </View>
+                        )
+                    }
                     <View>
-                        <Button
-                            title='消息'
-                            onPress={() =>  navigation.openDrawer()}
-                        />
-                        <View>
-                            <List>
-                                <DatePicker
-                                    value={this.state.value}
-                                    mode="date"
-                                    minDate={new Date(2015, 7, 6)}
-                                    maxDate={new Date(2026, 11, 3)}
-                                    onChange={this.onChange}
-                                    format="YYYY-MM-DD"
-                                >
-                                    <List.Item arrow="horizontal">Select Date</List.Item>
-                                </DatePicker>
-                            </List>
-                        </View>
+                        <NoticeBar mode="link" onPress={() => alert('link')}>
+                            Notice: The arrival time of incomes and transfers of Yu 'E Bao will be
+                            delayed during National Day.
+                        </NoticeBar>
+                        <ScrollView>
+                            <View>
+                                <Button
+                                    style={{marginTop:20}}
+                                    title='消息'
+                                    onPress={() =>  navigation.openDrawer()}
+                                />
+                                <View>
+                                    <List>
+                                        <DatePicker
+                                            value={this.state.value}
+                                            mode="date"
+                                            minDate={new Date(2015, 7, 6)}
+                                            maxDate={new Date(2026, 11, 3)}
+                                            onChange={this.onChange}
+                                            format="YYYY-MM-DD"
+                                        >
+                                            <List.Item arrow="horizontal">Select Date</List.Item>
+                                        </DatePicker>
+                                    </List>
+                                </View>
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </Provider>

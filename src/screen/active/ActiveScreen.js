@@ -53,7 +53,7 @@ export default class ActiveScreen extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.flex1}>
-                        <Text style={styles.title}>活动</Text>
+                        <Text style={styles.title}>动态</Text>
                     </View>
                     <View style={styles.flex1}>
                         <TouchableOpacity onPress={() =>{
