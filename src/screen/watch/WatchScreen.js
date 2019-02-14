@@ -1,10 +1,37 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
-import CarouselNav from "../../components/carousel/Carousel";
-import { List, SwipeAction,Icon } from '@ant-design/react-native';
+import React, {
+    Component
+} from 'react';
+
+import {
+    StyleSheet,
+    View,
+    BackHandler,
+    TouchableOpacity,
+    Image,
+    Text,
+    ScrollView
+} from 'react-native';
+import { Button, InputItem, List,Icon,Checkbox } from '@ant-design/react-native';
+import Video from 'react-native-video';
+
+
 export default class WatchScreen extends Component {
+
     static navigationOptions = {
-        header:null
+        header: null
+    };
+
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
+    }
+
+    onBackAndroid = () => {
+        this.props.navigation.goBack();
+        return true;
     };
 
     render() {
@@ -28,13 +55,24 @@ export default class WatchScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View>
-                    <CarouselNav/>
-                </View>
+                <ScrollView>
+                    <View style={{width:'100%'}}>
+                        <List>
+                            <List.Item>
+                                <Text>周杰伦《告白气球》</Text>
+                                <Video
+                                    source={require('../../assets/video/gbqq.mp4')}
+                                    style={styles.fullScreen}
+                                />
+                            </List.Item>
+                        </List>
+                    </View>
+                </ScrollView>
             </View>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     header: {
@@ -62,7 +100,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#fff',
     },
-    wrapper: {
-        backgroundColor: '#fff',
+    fullScreen: {
+        flex:1,
+        flexDirection: 'row',
+        height:200,
     },
 });

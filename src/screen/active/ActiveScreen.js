@@ -1,164 +1,160 @@
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image,ListView,Animated} from 'react-native';
-import { List, SwipeAction,Icon } from '@ant-design/react-native';
-export default class ActiveScreen extends Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-            header: () => null, // 隐藏头部
+import { StyleSheet, Text, View } from 'react-native';
+import Sound from 'react-native-sound'
+import { Slider } from '@ant-design/react-native';
+let mp3 = require('../../assets/mp3/fyydys.mp3');//支持众多格式
+//如果是网络音频，使用 new Sound(mp3,null,error => {})
+let whoosh = new Sound(mp3, (error) => {
+    if (error) {
+        return console.log('资源加载失败', error);
+    }
+});
+
+export default class mySound extends Component {
+    constructor(props){
+        super(props);
+        this.handleChange = value => {
+            this.setState({
+                volume: value,
+            });
+            whoosh.setVolume(this.state.volume);
+        };
+        this.progressChange = value=>{
+            this._getNowTime(value);
         }
+        this.state = {
+            volume: 0.5,
+            seconds: 0, //秒数
+            totalTime:0,//总秒数
+            totalMin: '', //总分钟
+            totalSec: '', //总分钟秒数
+            nowMin: 0, //当前分钟
+            nowSec: 0, //当前秒钟
+            nowProgress:0,//当前进度
+            maximumValue: 0, //滑块最大值
+        }
+    }
+    componentDidMount(){
+        let totalTime = whoosh.getDuration();
+        totalTime = Math.ceil(totalTime);
+        this.setState({totalTime: totalTime});
+        let totalMin = parseInt(totalTime/60); //总分钟数
+        let totalSec = totalTime - totalMin * 60; //秒钟数并判断前缀是否 + '0'
+        totalSec = totalSec > 9 ? totalSec : '0' + totalSec;
+        this.setState({
+            totalMin,
+            totalSec,
+            maximumValue: totalTime,
+        })
+    }
+    componentWillUnmount(){
+        this.time && clearTimeout(this.time);
+    }
+    // 声音+
+    _addVolume = () => {
+        let volume = this.state.volume;
+        volume += 0.1;
+        volume = parseFloat(volume).toFixed(1) * 1;
+        if(volume > 1){
+            return alert('目前已经是最大音量');
+        }
+        this.setState({volume: volume});
+        whoosh.setVolume(volume);
+    }
+    // 声音-
+    _reduceVolume = () => {
+        let volume = this.state.volume;
+        volume -= 0.1;
+        volume = parseFloat(volume).toFixed(1) * 1;
+        if(volume < 0){
+            return alert('当前为静音');
+        }
+        this.setState({volume: volume});
+        whoosh.setVolume(volume);
+    }
+    // 播放
+    _play = () => {
+        whoosh.play();
+        this.time = setInterval(() => {
+            whoosh.getCurrentTime(seconds => {
+                seconds = Math.ceil(seconds);
+                this._getNowTime(seconds)
+            })
+        },1000)
+    }
+    // 暂停
+    _pause = () => {
+        clearInterval(this.time);
+        whoosh.pause();
+    }
+    // 停止
+    _stop = () => {
+        clearInterval(this.time);
+        this.setState({
+            nowMin: 0,
+            nowSec: 0,
+            seconds: 0,
+        });
+        whoosh.stop();
+    }
+    _getNowTime = (seconds) => {
+        let nowMin = this.state.nowMin,
+            nowSec = this.state.nowSec;
+        if(seconds >= 60){
+            nowMin = parseInt(seconds/60); //当前分钟数
+            nowSec = seconds - nowMin * 60;
+            nowSec = nowSec < 10 ? '0' + Math.floor(nowSec) : Math.floor(nowSec);
+        }else{
+            nowSec = seconds < 10 ? '0' + Math.floor(seconds):Math.floor(seconds);
+        }
+        let nowProgress = seconds;
+        this.setState({
+            nowMin,
+            nowSec,
+            seconds,
+            nowProgress
+        })
     };
     render() {
-        const {navigation} = this.props;
-        const right = [
-            {
-                text: 'More',
-                onPress: () => console.log('more'),
-                style: { backgroundColor: 'orange', color: 'white' },
-            },
-            {
-                text: 'Delete',
-                onPress: () => console.log('delete'),
-                style: { backgroundColor: 'red', color: 'white' },
-            },
-            {
-                text: 'edit',
-                onPress: () => console.log('reply'),
-                style: { backgroundColor: 'green', color: 'white' },
-            },
-        ];
-        const left = [
-            {
-                text: 'Read',
-                onPress: () => console.log('read'),
-                style: { backgroundColor: 'blue', color: 'white' },
-            },
-            {
-                text: 'Reply',
-                onPress: () => console.log('reply'),
-                style: { backgroundColor: 'green', color: 'white' },
-            },
-            {
-                text: 'delete',
-                onPress: () => console.log('reply'),
-                style: { backgroundColor: 'red', color: 'white' },
-            },
-        ];
+        let time = this.state;
+
         return (
-            <View>
-                <View style={styles.header}>
-                    <View style={styles.flex1}>
-                        <TouchableOpacity onPress={() =>  navigation.openDrawer()} style={{alignSelf:'flex-start',marginLeft:10}}>
-                            <Image source={require('../../assets/images/logo.png')} style={styles.avatar} />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.flex1}>
-                        <Text style={styles.title}>动态</Text>
-                    </View>
-                    <View style={styles.flex1}>
-                        <TouchableOpacity onPress={() =>{
-                            navigation.navigate('FriendAdd')
-                        }} style={{alignSelf:'flex-end',marginRight:10}}>
-                            <Icon style={{color:'#fff',paddingLeft:10}} name={'dash'}/>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <Button
-                    title='活动'
-                    onPress={() =>  navigation.openDrawer()}
-                />
+            <View style={styles.container}>
+                <Text>当前音量: {this.state.volume}</Text>
+                <Text onPress={this._addVolume}>声音+</Text>
+                <Text onPress={this._reduceVolume}>声音-</Text>
+                <Text onPress={this._play}>播放</Text>
+                <Text onPress={this._pause}>暂停</Text>
+                <Text onPress={this._stop}>停止</Text>
                 <View>
-                    <List>
-                        <Text>左右侧滑</Text>
-                        <SwipeAction
-                            autoClose
-                            style={{ backgroundColor: 'transparent' }}
-                            right={right}
-                            left={left}
-                            onOpen={() => console.log('open')}
-                            onClose={() => console.log('close')}
-                        >
-                            <List.Item extra="extra content">
-                                Simple example: left and right buttons
-                            </List.Item>
-                        </SwipeAction>
-                        <Text>向左侧滑</Text>
-                        <SwipeAction
-                            autoClose
-                            style={{ backgroundColor: 'transparent' }}
-                            right={right}
-                            onOpen={() => console.log('open')}
-                            onClose={() => console.log('close')}
-                        >
-                            <List.Item extra="extra content">
-                                Simple example: left and right buttons
-                            </List.Item>
-                        </SwipeAction>
-                    </List>
+                    <Text>音量控制</Text>
+                    <Slider
+                        min={0}
+                        max={1}
+                        defaultValue={this.state.volume}
+                        onChange={value => {
+                            this.handleChange(value)
+                        }
+                            }/>
+                    <Text>进度控制</Text>
+                    <Slider
+                        min={0}
+                        max={this.state.totalTime}
+                        defaultValue={this.state.nowProgress}
+                        onChange={value => {
+                            this.progressChange(value)
+                        }
+                        }/>
+                    <Text style={{textAlign:'right'}}>{time.nowMin}:{time.nowSec}/{time.totalMin}:{time.totalSec}</Text>
                 </View>
-                <Text style={{fontSize:89}}>福</Text>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    header: {
-        height: 60,
-        flexDirection: 'row',
-        backgroundColor: '#0187FB',
-        borderBottomWidth: 1,
-        borderColor: '#ddd'
-    },
-    flex1: {
+    container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    avatar: {
-        width: 50,
-        height: 50,
-        borderRadius: 25
-    },
-    title: {
-        fontSize: 20,
-        color: '#fff'
-    },
-    add: {
-        fontSize: 18,
-        color: '#fff',
-    },
-    rowFront: {
-        alignItems: 'center',
-        backgroundColor: '#CCC',
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        justifyContent: 'center',
-        height: 50,
-    },
-    rowBack: {
-        alignItems: 'center',
-        backgroundColor: '#DDD',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: 15,
-    },
-    standaloneRowBack: {
-        alignItems: 'center',
-        backgroundColor: '#8BC645',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 15
-    },
-    backTextWhite: {
-        color: '#FFF'
-    },
-    standaloneRowFront: {
-        alignItems: 'center',
-        backgroundColor: '#CCC',
-        justifyContent: 'center',
-        height: 50,
+        backgroundColor: '#F5FCFF',
     },
 });
