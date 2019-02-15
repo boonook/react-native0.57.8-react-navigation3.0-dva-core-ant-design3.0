@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image} from 'react-native';
+import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image,FlatList,TouchableHighlight,RefreshControl} from 'react-native';
 import { DatePicker, List ,Provider,Icon} from '@ant-design/react-native'
 export default class FriendScreen extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -8,6 +8,47 @@ export default class FriendScreen extends Component {
             header: () => null, // 隐藏头部
         }
     };
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [{key: 'a1'}, {key: 'b1'},{key: 'a2'}, {key: 'b2'},{key: 'a3'}, {key: 'b3'},{key: 'a4'}, {key: 'b4'},{key: 'a1'}, {key: 'b1'},{key: 'a2'}, {key: 'b2'},{key: 'a3'}, {key: 'b3'},{key: 'a4'}, {key: 'b4'},{key: 'a1'}, {key: 'b1'},{key: 'a2'}, {key: 'b2'},{key: 'a3'}, {key: 'b3'},{key: 'a4'}, {key: 'b4'}],
+            nomore: false,
+            refreshing: false,
+        };
+    }
+
+    componentDidMount(){
+        this.onEndReachedCalled = false;
+    }
+    ListFooterComponent=()=>{
+        return (
+            <View>
+                <Text>加载更多...</Text>
+            </View>
+        );
+    }
+
+    ListHeaderComponent=()=>{
+        return (
+            <View>
+                <Text>头部...</Text>
+            </View>
+        )
+    }
+
+    //距离底部不足时触发
+    _onEndReached=()=>{
+        alert(123)
+    }
+
+    _onRefresh=()=>{
+        alert(123)
+    }
+
+    scrollToIndex=(params)=>{
+        alert(params)
+    }
+
     render() {
         const {navigation} = this.props;
         return (
@@ -29,26 +70,23 @@ export default class FriendScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={styles.container}>
-                    {/*<Video*/}
-                        {/*ref={(ref) => {*/}
-                            {/*this.video = ref*/}
-                        {/*}}*/}
-                        {/*//来自本地的MP4视频*/}
-                        {/*source={require('../../assets/video/gbqq.mp4')}*/}
-                        {/*//1.0表示默认速率*/}
-                        {/*rate={1.0}*/}
-                        {/*//图片等比例缩放*/}
-                        {/*resizeMode='contain'*/}
-                        {/*//不重复播放*/}
-                        {/*repeat={false}*/}
-                        {/*//默认音量*/}
-                        {/*volume={1.0}*/}
-                        {/*//样式*/}
-                        {/*style={styles.backgroundVideo}/>*/}
-                </View>
-                <Button
-                    title='朋友'
+                <FlatList
+                    ListFooterComponent={this.ListFooterComponent}
+                    onEndReached={this._onEndReached}
+                    onEndReachedThreshold={0.1}///设置底部距离
+                    scrollToIndex={this.scrollToIndex}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            colors={['#ff0000', '#00ff00', '#0000ff']}
+                            progressBackgroundColor={"#ffffff"}
+                            onRefresh={() => {
+                                this._onRefresh();
+                            }}
+                        />
+                    }
+                    data={this.state.data}
+                    renderItem={({item}) => <TouchableHighlight style={{paddingTop:2,paddingBottom:5}}><Text style={{lineHeight:30,fontSize:16,backgroundColor:'#2b2b2b'}}>{item.key}</Text></TouchableHighlight>}
                 />
             </View>
         );

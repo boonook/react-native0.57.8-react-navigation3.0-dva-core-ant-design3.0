@@ -4111,9 +4111,17 @@ react-native-drawer-layout@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-drawer-layout/-/react-native-drawer-layout-2.0.0.tgz#8ce1e4027bd3f3a09045afdb46080e18346be232"
 
-react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.12:
+react-native-gesture-handler@^1.0.0:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.12.tgz#99a22f90212df299245357dbd3a9a01c788f310b"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    invariant "^2.2.2"
+    prop-types "^15.5.10"
+
+react-native-gesture-handler@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.15.tgz#7e0d0a457820a3c9325a3d492daaed14400508a6"
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
