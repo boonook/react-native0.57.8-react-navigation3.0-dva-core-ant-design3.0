@@ -16,6 +16,7 @@ import LoginScreen from "./screen/login/LoginScreen";
 import SettingScreen from "./components/setting/SettingScreen";
 import ForgetPassword from "./screen/forgetPassword/ForgetPassword";
 import Registered from "./screen/registered/Registered";
+import MapLocation from "./components/map/MapLocation";
 
 const {height,width} =  Dimensions.get('window');
 
@@ -86,6 +87,15 @@ const DrawerNavigator =  createDrawerNavigator({
                 <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             )
         }
+    },
+    MapLocation:{
+        screen:MapLocation,
+        navigationOptions: {
+            drawerLabel:'MapLocation',
+            drawerIcon:({tintColor})=>(
+                <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+            )
+        }
     }
 },{
     initialRouteName: 'Home',
@@ -112,6 +122,12 @@ const CustomDrawerContentComponent = props => {
                     onPress={() => props.navigation.navigate("Setting")}
                 >
                     <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'setting'}/>设置</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => props.navigation.navigate("MapLocation")}
+                >
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'map'}/>地图定位</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.btnStyle}

@@ -4,4 +4,4 @@ import { List, SearchBar,Icon } from "@ant-design/react-native";
 
 export default class addFriend extends Component{
 
-}z
+}
