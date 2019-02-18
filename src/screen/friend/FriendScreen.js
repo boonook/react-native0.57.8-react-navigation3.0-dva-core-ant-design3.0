@@ -1,98 +1,147 @@
+import React, { Component } from "react";
+import { View, Text, FlatList, ActivityIndicator,StyleSheet,TouchableOpacity,Image } from "react-native";
+import { List, SearchBar,Icon } from "@ant-design/react-native";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Button,StatusBar,TouchableOpacity,Image,FlatList,TouchableHighlight,RefreshControl} from 'react-native';
-import { DatePicker, List ,Provider,Icon} from '@ant-design/react-native'
-export default class FriendScreen extends Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-            header: () => null, // 隐藏头部
-        }
-    };
+class FlatListDemo extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            data: [{key: 'a1'}, {key: 'b1'},{key: 'a2'}, {key: 'b2'},{key: 'a3'}, {key: 'b3'},{key: 'a4'}, {key: 'b4'},{key: 'a1'}, {key: 'b1'},{key: 'a2'}, {key: 'b2'},{key: 'a3'}, {key: 'b3'},{key: 'a4'}, {key: 'b4'},{key: 'a1'}, {key: 'b1'},{key: 'a2'}, {key: 'b2'},{key: 'a3'}, {key: 'b3'},{key: 'a4'}, {key: 'b4'}],
-            nomore: false,
-            refreshing: false,
+            loading: false,
+            data: [],
+            page: 1,
+            seed: 1,
+            error: null,
+            refreshing: false
         };
     }
 
-    componentDidMount(){
-        this.onEndReachedCalled = false;
+    componentDidMount() {
+        this.makeRemoteRequest();
     }
-    ListFooterComponent=()=>{
+
+    makeRemoteRequest = () => {
+        const { page, seed } = this.state;
+        const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
+        this.setState({ loading: true });
+
+        fetch(url)
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    data: page === 1 ? res.results : [...this.state.data, ...res.results],
+                    error: res.error || null,
+                    loading: false,
+                    refreshing: false
+                });
+            })
+            .catch(error => {
+                this.setState({ error, loading: false });
+            });
+    };
+
+    handleRefresh = () => {
+        this.setState(
+            {
+                page: 1,
+                seed: this.state.seed + 1,
+                refreshing: true
+            },
+            () => {
+                this.makeRemoteRequest();
+            }
+        );
+    };
+
+    handleLoadMore = () => {
+        this.setState(
+            {
+                page: this.state.page + 1
+            },
+            () => {
+                this.makeRemoteRequest();
+            }
+        );
+    };
+
+    renderSeparator = () => {
         return (
-            <View>
-                <Text>加载更多...</Text>
+            <View
+                style={{
+                    height: 1,
+                    width: "86%",
+                    backgroundColor: "#CED0CE",
+                    marginLeft: "14%"
+                }}
+            />
+        );
+    };
+
+    renderHeader = () => {
+        return <SearchBar placeholder="Type Here..." lightTheme round />;
+    };
+
+    renderFooter = () => {
+        if (!this.state.loading) return null;
+
+        return (
+            <View
+                style={{
+                    paddingVertical: 20,
+                    borderTopWidth: 1,
+                    borderColor: "#CED0CE"
+                }}
+            >
+                <ActivityIndicator animating size="large" />
             </View>
         );
-    }
-
-    ListHeaderComponent=()=>{
-        return (
-            <View>
-                <Text>头部...</Text>
-            </View>
-        )
-    }
-
-    //距离底部不足时触发
-    _onEndReached=()=>{
-        alert(123)
-    }
-
-    _onRefresh=()=>{
-        alert(123)
-    }
-
-    scrollToIndex=(params)=>{
-        alert(params)
-    }
+    };
 
     render() {
         const {navigation} = this.props;
         return (
-            <View>
-                <View style={styles.header}>
-                    <View style={styles.flex1}>
-                        <TouchableOpacity onPress={() =>  navigation.openDrawer()} style={{alignSelf:'flex-start',marginLeft:10}}>
-                            <Image source={require('../../assets/images/logo.png')} style={styles.avatar} />
-                        </TouchableOpacity>
+                <View>
+                    <View style={styles.header}>
+                        <View style={styles.flex1}>
+                            <TouchableOpacity onPress={() =>  navigation.openDrawer()} style={{alignSelf:'flex-start',marginLeft:10}}>
+                                <Image source={require('../../assets/images/logo.png')} style={styles.avatar} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.flex1}>
+                            <Text style={styles.title}>好友</Text>
+                        </View>
+                        <View style={styles.flex1}>
+                            <TouchableOpacity
+                                onPress={() => this.setState({ state: !this.state.state })}
+                                style={{alignSelf:'flex-end',marginRight:10}}>
+                                <Icon style={{color:'#fff',paddingLeft:10}} name={'user-add'}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.flex1}>
-                        <Text style={styles.title}>联系人</Text>
-                    </View>
-                    <View style={styles.flex1}>
-                        <TouchableOpacity onPress={() =>{
-                            navigation.navigate('FriendAdd')
-                        }} style={{alignSelf:'flex-end',marginRight:10}}>
-                            <Icon style={{color:'#fff',paddingLeft:10}} name={'usergroup-add'}/>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <FlatList
-                    ListFooterComponent={this.ListFooterComponent}
-                    onEndReached={this._onEndReached}
-                    onEndReachedThreshold={0.1}///设置底部距离
-                    scrollToIndex={this.scrollToIndex}
-                    refreshControl={
-                        <RefreshControl
+                    <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+                        <FlatList
+                            data={this.state.data}
+                            renderItem={({ item }) => (
+                                <List.Item thumb={item.picture.thumbnail}>
+                                    {item.name.last}
+                                </List.Item>
+                            )}
+                            keyExtractor={item => item.email}
+                            ItemSeparatorComponent={this.renderSeparator}
+                            ListHeaderComponent={this.renderHeader}
+                            ListFooterComponent={this.renderFooter}
+                            onRefresh={this.handleRefresh}
                             refreshing={this.state.refreshing}
-                            colors={['#ff0000', '#00ff00', '#0000ff']}
-                            progressBackgroundColor={"#ffffff"}
-                            onRefresh={() => {
-                                this._onRefresh();
-                            }}
+                            onEndReached={this.handleLoadMore}
+                            onEndReachedThreshold={50}
                         />
-                    }
-                    data={this.state.data}
-                    renderItem={({item}) => <TouchableHighlight style={{paddingTop:2,paddingBottom:5}}><Text style={{lineHeight:30,fontSize:16,backgroundColor:'#2b2b2b'}}>{item.key}</Text></TouchableHighlight>}
-                />
-            </View>
+                    </List>
+                </View>
         );
     }
 }
 
+export default FlatListDemo;
 const styles = StyleSheet.create({
     header: {
         height: 60,
@@ -118,9 +167,5 @@ const styles = StyleSheet.create({
     add: {
         fontSize: 18,
         color: '#fff',
-    },
-    container:{
-        flex: 1,
-    },
-    backgroundVideo:{}
+    }
 });
