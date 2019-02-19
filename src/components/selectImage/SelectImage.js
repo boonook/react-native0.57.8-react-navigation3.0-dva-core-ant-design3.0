@@ -9,7 +9,9 @@ import {
     View,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-
+import {
+    Icon,
+} from '@ant-design/react-native';
 export default class App extends React.Component {
     state = {
         avatarSource: null,
@@ -82,34 +84,56 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                    <View
-                        style={[
-                            styles.avatar,
-                            styles.avatarContainer,
-                            { marginBottom: 20 },
-                        ]}
-                    >
-                        {this.state.avatarSource === null ? (
-                            <Text>Select a Photo</Text>
-                        ) : (
-                            <Image style={styles.avatar} source={this.state.avatarSource} />
-                        )}
+            <View
+                style={{
+                    flex:1,
+                    flexDirection: 'column',
+                }}
+            >
+                <View style={styles.header}>
+                    <View style={styles.headLeft}>
+                        <Icon style={{color:'rgba(0,0,0,0.6)',paddingLeft:10}} name={'arrow-left'}
+                              onPress={()=>{
+                                  this.props.navigation.goBack();
+                              }}
+                        />
                     </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
-                    <View style={[styles.avatar, styles.avatarContainer]}>
-                        <Text>Select a Video</Text>
+                    <View style={styles.flex1}>
+                        <Text>选择图片</Text>
                     </View>
-                </TouchableOpacity>
+                    <View style={styles.flex1}>
 
-                {this.state.videoSource && (
-                    <Text style={{ margin: 8, textAlign: 'center' }}>
-                        {this.state.videoSource}
-                    </Text>
-                )}
+                    </View>
+                </View>
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                        <View
+                            style={[
+                                styles.avatar,
+                                styles.avatarContainer,
+                                { marginBottom: 20 },
+                            ]}
+                        >
+                            {this.state.avatarSource === null ? (
+                                <Text>Select a Photo</Text>
+                            ) : (
+                                <Image style={styles.avatar} source={this.state.avatarSource} />
+                            )}
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
+                        <View style={[styles.avatar, styles.avatarContainer]}>
+                            <Text>Select a Video</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    {this.state.videoSource && (
+                        <Text style={{ margin: 8, textAlign: 'center' }}>
+                            {this.state.videoSource}
+                        </Text>
+                    )}
+                </View>
             </View>
         );
     }
@@ -133,4 +157,28 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
     },
+    header: {
+        height: 60,
+        flexDirection: 'row',
+        backgroundColor:'#fff',
+        borderBottomWidth: 1,
+        borderColor: '#ddd'
+    },
+    headLeft:{
+        flex: 1,
+        justifyContent: 'center',
+    },
+    flex1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title: {
+        fontSize: 20,
+        color:'rgba(0,0,0,0.6)'
+    },
+    add: {
+        fontSize: 18,
+        color: '#fff',
+    }
 });

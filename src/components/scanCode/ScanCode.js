@@ -8,6 +8,9 @@ import {
     Image,
     Text
 } from 'react-native';
+import {
+    Icon,
+} from '@ant-design/react-native';
 import { RNCamera } from 'react-native-camera';
 import {
     screenH,
@@ -63,43 +66,65 @@ export default class ScanScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle='dark-content' />
-                <RNCamera
-                    ref="camera"
-                    type={RNCamera.Constants.Type.back}
-                    style = {styles.cameraView}
-                    barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
-                    flashMode={RNCamera.Constants.FlashMode.on}
-                    onBarCodeRead={this._onBarCodeRead}
-                >
-                    <View style={styles.maskOuter}>
-                        <View style={[{height: maskHeight}, styles.maskItem]} />
-                        <View style={styles.maskCenter}>
-                            <View style={[{width: maskWidth}, styles.maskItem]} />
-                            <View style={styles.maskInner}>
-                                <Animated.View
-                                    style={{
-                                        transform: [{
-                                            translateY: this.state.animatedValue,
-                                        }]
-                                    }}
-                                >
-                                    <Image
-                                        source={viewFinderSource}
-                                        resizeMode="stretch"
-                                        style={{
-                                            width: '100%',
-                                            height: '100%',
-                                        }}
-                                    />
-                                </Animated.View>
-                            </View>
-                            <View style={[{width: maskWidth}, styles.maskItem]} />
-                        </View>
-                        <View style={[{height: maskHeight}, styles.maskItem]} />
+            <View
+                style={{
+                    flex:1,
+                    flexDirection: 'column',
+                }}
+            >
+                <View style={styles.header}>
+                    <View style={styles.headLeft}>
+                        <Icon style={{color:'rgba(0,0,0,0.6)',paddingLeft:10}} name={'arrow-left'}
+                              onPress={()=>{
+                                  this.props.navigation.goBack();
+                              }}
+                        />
                     </View>
-                </RNCamera>
+                    <View style={styles.flex1}>
+                        <Text>扫一扫</Text>
+                    </View>
+                    <View style={styles.flex1}>
+
+                    </View>
+                </View>
+                <View style={styles.container}>
+                    <StatusBar barStyle='dark-content' />
+                    <RNCamera
+                        ref="camera"
+                        type={RNCamera.Constants.Type.back}
+                        style = {styles.cameraView}
+                        barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+                        flashMode={RNCamera.Constants.FlashMode.on}
+                        onBarCodeRead={this._onBarCodeRead}
+                    >
+                        <View style={styles.maskOuter}>
+                            <View style={[{height: maskHeight}, styles.maskItem]} />
+                            <View style={styles.maskCenter}>
+                                <View style={[{width: maskWidth}, styles.maskItem]} />
+                                <View style={styles.maskInner}>
+                                    <Animated.View
+                                        style={{
+                                            transform: [{
+                                                translateY: this.state.animatedValue,
+                                            }]
+                                        }}
+                                    >
+                                        <Image
+                                            source={viewFinderSource}
+                                            resizeMode="stretch"
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                            }}
+                                        />
+                                    </Animated.View>
+                                </View>
+                                <View style={[{width: maskWidth}, styles.maskItem]} />
+                            </View>
+                            <View style={[{height: maskHeight}, styles.maskItem]} />
+                        </View>
+                    </RNCamera>
+                </View>
             </View>
         );
     }
@@ -138,5 +163,34 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderColor: '#fff',
         borderWidth: 1
+    },
+    header: {
+        height: 60,
+        flexDirection: 'row',
+        backgroundColor:'#fff',
+        borderBottomWidth: 1,
+        borderColor: '#ddd'
+    },
+    headLeft:{
+        flex: 1,
+        justifyContent: 'center',
+    },
+    flex1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    },
+    title: {
+        fontSize: 20,
+        color:'rgba(0,0,0,0.6)'
+    },
+    add: {
+        fontSize: 18,
+        color: '#fff',
     }
 });
