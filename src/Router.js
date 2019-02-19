@@ -17,6 +17,8 @@ import SettingScreen from "./components/setting/SettingScreen";
 import ForgetPassword from "./screen/forgetPassword/ForgetPassword";
 import Registered from "./screen/registered/Registered";
 import MapLocation from "./components/map/MapLocation";
+import SelectImage from "./components/selectImage/SelectImage";
+import ScanCode from "./components/scanCode/ScanCode";
 
 const {height,width} =  Dimensions.get('window');
 
@@ -96,6 +98,24 @@ const DrawerNavigator =  createDrawerNavigator({
                 <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             )
         }
+    },
+    SelectImage:{
+        screen:SelectImage,
+        navigationOptions: {
+            drawerLabel:'SelectImage',
+            drawerIcon:({tintColor})=>(
+                <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+            )
+        }
+    },
+    ScanCode:{
+        screen:ScanCode,
+        navigationOptions: {
+            drawerLabel:'ScanCode',
+            drawerIcon:({tintColor})=>(
+                <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+            )
+        }
     }
 },{
     initialRouteName: 'Home',
@@ -127,13 +147,25 @@ const CustomDrawerContentComponent = props => {
                     style={styles.btnStyle}
                     onPress={() => props.navigation.navigate("MapLocation")}
                 >
-                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'map'}/>地图定位</Text>
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'environment'}/>地图定位</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => props.navigation.navigate("SelectImage")}
+                >
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'picture'}/>图片选择</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => props.navigation.navigate("ScanCode")}
+                >
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>扫一扫</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.btnStyle}
                     onPress={() => props.navigation.navigate("Login")}
                 >
-                    <Text style={{fontSize:18}}> <Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'user'}/>退出登录</Text>
+                    <Text style={{fontSize:18}}> <Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'export'}/>退出登录</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>

@@ -74,7 +74,7 @@ export default class MapLocation extends Component {
                         />
                     </View>
                     <View style={styles.flex1}>
-
+                        <Text>定位</Text>
                     </View>
                     <View style={styles.flex1}>
 

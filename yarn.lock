@@ -4105,6 +4105,12 @@ react-native-amap-geolocation@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/react-native-amap-geolocation/-/react-native-amap-geolocation-0.3.2.tgz#99b208638dd7ff911e60d34b36ee1ffc0d9b82b5"
 
+react-native-camera@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.11.1.tgz#c192f832f81bc804f561c80224c842ddee1c934e"
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-collapsible@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-1.4.0.tgz#ec03cac361178319b77bb9993b73677356dd89d2"
@@ -4130,6 +4136,10 @@ react-native-gesture-handler@^1.0.15:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-image-picker@^0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.28.0.tgz#e3f26df170ea932e9c0404624fbced2f59a300e3"
 
 react-native-menu@^0.23.0:
   version "0.23.0"
