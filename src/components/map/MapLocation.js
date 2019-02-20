@@ -5,57 +5,13 @@ import {
     Button,
     Flex
 } from '@ant-design/react-native';
-import { Geolocation } from "react-native-amap-geolocation";
+import MapView from 'react-native-maps';
 export default class MapLocation extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             header: () => null, // 隐藏头部
         }
     };
-    startLocation=()=>{
-        Geolocation.start();
-    };
-
-    stopLocation=()=>{
-        Geolocation.stop();
-    };
-
-    state = { location: {} };
-
-    async componentDidMount() {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            await Geolocation.init({
-                ios: "9bd6c82e77583020a73ef1af59d0c759",
-                android: "043b24fe18785f33c491705ffe5b6935"
-            });
-            Geolocation.setOptions({
-                interval: 10000,
-                distanceFilter: 10,
-                background: true,
-                reGeocode: true
-            });
-            Geolocation.addLocationListener(location => this.updateLocationState(location));
-        } else {
-            alert("Location permission denied");
-        }
-    };
-
-    componentWillUnmount() {
-        Geolocation.stop();
-    }
-
-    updateLocationState(location) {
-        if (location) {
-            location.timestamp = new Date(location.timestamp).toLocaleString();
-            this.setState({ location });
-            console.log(location);
-        }
-    }
-
-    getLastLocation = async () => this.updateLocationState(await Geolocation.getLastLocation());
 
     render(){
           return(
@@ -83,10 +39,10 @@ export default class MapLocation extends Component {
                  <View style={{marginTop:10}}>
                      <Flex>
                          <Flex.Item style={{ paddingLeft: 4, paddingRight: 4 }}>
-                             <Button type="primary" onPress={this.startLocation}>开始定位</Button>
+                             <Button type="primary">开始定位</Button>
                          </Flex.Item>
                          <Flex.Item style={{ paddingLeft: 4, paddingRight: 4 }}>
-                             <Button type="primary" onPress={this.stopLocation}>结束定位</Button>
+                             <Button type="primary">结束定位</Button>
                          </Flex.Item>
                      </Flex>
                  </View>
@@ -98,9 +54,7 @@ export default class MapLocation extends Component {
                         alignItems: 'stretch',
                       }}
                 >
-                    <Text>
-                        地图
-                    </Text>
+                    <MapView style={{width:'100%',height:'100%'}}/>
                 </View>
             </View>
         )

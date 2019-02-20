@@ -44,6 +44,7 @@
 		150C431F45A642EA90CD6794 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D180362222664619B3584ACC /* libRNSound.a */; };
 		539FABF2B891490AAD1058A2 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8AD75F453094D5AB8F21EF3 /* libRNCamera.a */; };
 		BD6821C0F034446A85E6A17B /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 833D166B462D4B45A6C9FD23 /* libRNImagePicker.a */; };
+		CA2AA1096EC742CCBDE9D6FE /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6CA886D4F14B8AB1314DA7 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -361,6 +362,8 @@
 		B8AD75F453094D5AB8F21EF3 /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		355A80B99BF1483DB91E68DA /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		833D166B462D4B45A6C9FD23 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		280EBEE99D274318B3F42936 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		6E6CA886D4F14B8AB1314DA7 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +396,7 @@
 				150C431F45A642EA90CD6794 /* libRNSound.a in Frameworks */,
 				539FABF2B891490AAD1058A2 /* libRNCamera.a in Frameworks */,
 				BD6821C0F034446A85E6A17B /* libRNImagePicker.a in Frameworks */,
+				CA2AA1096EC742CCBDE9D6FE /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +588,7 @@
 				FFF579DBB2774D3EB10244DC /* RNSound.xcodeproj */,
 				095673C5F16A4DD9906F793B /* RNCamera.xcodeproj */,
 				355A80B99BF1483DB91E68DA /* RNImagePicker.xcodeproj */,
+				280EBEE99D274318B3F42936 /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1225,6 +1230,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1233,6 +1239,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Debug;
@@ -1255,6 +1262,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1263,6 +1271,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Release;
@@ -1290,6 +1299,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Debug;
@@ -1316,6 +1326,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Release;
@@ -1346,6 +1357,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1354,6 +1366,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Debug;
@@ -1384,6 +1397,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1392,6 +1406,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Release;
@@ -1421,6 +1436,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1429,6 +1445,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Debug;
@@ -1458,6 +1475,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1466,6 +1484,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 			};
 			name = Release;

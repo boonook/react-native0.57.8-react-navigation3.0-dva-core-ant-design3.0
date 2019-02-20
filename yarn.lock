@@ -1603,6 +1603,12 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+echarts@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.2.3.tgz#4f01e15bfda3352fcd8ef9049f13d8448971a258"
+  dependencies:
+    zrender "^3.1.3"
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -3555,6 +3561,12 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+native-echarts@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/native-echarts/-/native-echarts-0.5.0.tgz#611382db27e48ae66cfda733cdf06b85a10b8abc"
+  dependencies:
+    echarts "3.2.3"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
@@ -4101,10 +4113,6 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-native-amap-geolocation@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-amap-geolocation/-/react-native-amap-geolocation-0.3.2.tgz#99b208638dd7ff911e60d34b36ee1ffc0d9b82b5"
-
 react-native-camera@^1.11.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.11.1.tgz#c192f832f81bc804f561c80224c842ddee1c934e"
@@ -4140,6 +4148,10 @@ react-native-gesture-handler@^1.0.15:
 react-native-image-picker@^0.28.0:
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.28.0.tgz#e3f26df170ea932e9c0404624fbced2f59a300e3"
+
+react-native-maps@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.23.0.tgz#edbfdcad0e42190627eb1c8067eaba5965c8f81e"
 
 react-native-menu@^0.23.0:
   version "0.23.0"
@@ -5449,3 +5461,7 @@ yargs@^9.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^7.0.0"
+
+zrender@^3.1.3:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.7.4.tgz#f847d53948481ef6d42906d1ea9aeec7acbefdf2"

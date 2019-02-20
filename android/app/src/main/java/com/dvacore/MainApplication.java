@@ -3,9 +3,9 @@ package com.dvacore;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.imagepicker.ImagePickerPackage;
 import org.reactnative.camera.RNCameraPackage;
-import cn.qiuxiang.react.geolocation.AMapGeolocationPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -29,9 +29,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
             new ImagePickerPackage(),
             new RNCameraPackage(),
-            new AMapGeolocationPackage(),
             new RNSoundPackage(),
             new ReactVideoPackage(),
             new RNGestureHandlerPackage()

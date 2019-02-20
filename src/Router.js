@@ -19,6 +19,7 @@ import Registered from "./screen/registered/Registered";
 import MapLocation from "./components/map/MapLocation";
 import SelectImage from "./components/selectImage/SelectImage";
 import ScanCode from "./components/scanCode/ScanCode";
+import ChartScreen from "./components/chart/ChartScreen";
 
 const {height,width} =  Dimensions.get('window');
 
@@ -40,7 +41,7 @@ const appTabNavigator = createBottomTabNavigator({
             tabBarLabel: '好友',
             tabBarIcon: ({ tintColor }) => {
                 // tintColor传递进来的是颜色，选中的颜色,那么图标颜色也要换
-                return <Image source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+                return <Image source={require('./assets/images/men.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             }
         })
     },
@@ -50,7 +51,7 @@ const appTabNavigator = createBottomTabNavigator({
             tabBarLabel: '活动',
             tabBarIcon: ({ tintColor }) => {
                 // tintColor传递进来的是颜色，选中的颜色,那么图标颜色也要换
-                return <Image source={require('./assets/images/message.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+                return <Image source={require('./assets/images/star.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             }
         })
     },
@@ -116,6 +117,15 @@ const DrawerNavigator =  createDrawerNavigator({
                 <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             )
         }
+    },
+    ChartScreen:{
+        screen:ChartScreen,
+        navigationOptions: {
+            drawerLabel:'ChartScreen',
+            drawerIcon:({tintColor})=>(
+                <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+            )
+        }
     }
 },{
     initialRouteName: 'Home',
@@ -160,6 +170,12 @@ const CustomDrawerContentComponent = props => {
                     onPress={() => props.navigation.navigate("ScanCode")}
                 >
                     <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>扫一扫</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => props.navigation.navigate("ChartScreen")}
+                >
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>统计图</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.btnStyle}
