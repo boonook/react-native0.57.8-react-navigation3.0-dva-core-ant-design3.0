@@ -7,6 +7,47 @@ import {
 } from '@ant-design/react-native';
 import Echarts from 'native-echarts';
 const {width} = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    header: {
+        height: 60,
+        flexDirection: 'row',
+        backgroundColor:'#fff',
+        borderBottomWidth: 1,
+        borderColor: '#ddd'
+    },
+    headLeft:{
+        flex: 1,
+        justifyContent: 'center',
+    },
+    flex1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    },
+    add: {
+        fontSize: 18,
+        color: '#fff',
+    },
+    titleView:{
+        height:Platform.OS=='ios'?64:44,
+        paddingTop:Platform.OS=='ios'?14:0,
+        backgroundColor:'#ff6400',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title:{
+        color:'white',
+        fontSize:20,
+        textAlign:'center',
+    },
+
+});
 export default class MapLocation extends Component {
     static navigationOptions = ({navigation}) => {
         return {
@@ -111,44 +152,3 @@ export default class MapLocation extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    header: {
-        height: 60,
-        flexDirection: 'row',
-        backgroundColor:'#fff',
-        borderBottomWidth: 1,
-        borderColor: '#ddd'
-    },
-    headLeft:{
-        flex: 1,
-        justifyContent: 'center',
-    },
-    flex1: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    avatar: {
-        width: 50,
-        height: 50,
-        borderRadius: 25
-    },
-    add: {
-        fontSize: 18,
-        color: '#fff',
-    },
-    titleView:{
-        height:Platform.OS=='ios'?64:44,
-        paddingTop:Platform.OS=='ios'?14:0,
-        backgroundColor:'#ff6400',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title:{
-        color:'white',
-        fontSize:20,
-        textAlign:'center',
-    },
-
-});

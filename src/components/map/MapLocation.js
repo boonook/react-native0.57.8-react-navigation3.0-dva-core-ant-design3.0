@@ -1,17 +1,24 @@
 import React, { Component } from "react";
-import { View, Text,StyleSheet,PermissionsAndroid } from "react-native";
+import { View, Text,StyleSheet,PermissionsAndroid,WebView,Alert } from "react-native";
 import {
     Icon,
     Button,
     Flex
 } from '@ant-design/react-native';
-import MapView from 'react-native-maps';
 export default class MapLocation extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             header: () => null, // 隐藏头部
         }
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            messagesReceivedFromWebView: '',
+            message: '',
+        };
+    }
 
     render(){
           return(
@@ -39,7 +46,9 @@ export default class MapLocation extends Component {
                  <View style={{marginTop:10}}>
                      <Flex>
                          <Flex.Item style={{ paddingLeft: 4, paddingRight: 4 }}>
-                             <Button type="primary">开始定位</Button>
+                             <Button type="primary" onPress={()=>{
+                                 this.refs.webview.postMessage("world");
+                             }}>向html页面发送消息</Button>
                          </Flex.Item>
                          <Flex.Item style={{ paddingLeft: 4, paddingRight: 4 }}>
                              <Button type="primary">结束定位</Button>
@@ -54,7 +63,14 @@ export default class MapLocation extends Component {
                         alignItems: 'stretch',
                       }}
                 >
-                    <MapView style={{width:'100%',height:'100%'}}/>
+                    <WebView
+                        ref = {'webview'}
+                        source={require('./map.html')}
+                        style={{marginTop: 20}}
+                        onMessage={(e) => {
+                            alert(e.nativeEvent.data)
+                        }}
+                    />
                 </View>
             </View>
         )

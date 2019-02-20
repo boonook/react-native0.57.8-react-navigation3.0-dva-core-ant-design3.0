@@ -4113,9 +4113,9 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-native-camera@^1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.11.1.tgz#c192f832f81bc804f561c80224c842ddee1c934e"
+react-native-camera@^1.11.2:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.11.2.tgz#d5361d1817090ed89f283d23c5d2e68c52044e2b"
   dependencies:
     prop-types "^15.6.2"
 
@@ -4148,10 +4148,6 @@ react-native-gesture-handler@^1.0.15:
 react-native-image-picker@^0.28.0:
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.28.0.tgz#e3f26df170ea932e9c0404624fbced2f59a300e3"
-
-react-native-maps@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.23.0.tgz#edbfdcad0e42190627eb1c8067eaba5965c8f81e"
 
 react-native-menu@^0.23.0:
   version "0.23.0"

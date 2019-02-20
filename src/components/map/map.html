@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World</title>
+    <style type="text/css">
+        html{height:100%}
+        body{height:100%;margin:0px;padding:0px}
+        #container{height:70%}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bUU4IBE5Rq2tgFyMvNXlG3GNrwqVdvQG">
+        //v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
+    </script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <button>向rn发送数据</button>
+<script type="text/javascript">
+    var map = new BMap.Map("container");
+    // 创建地图实例
+    var point = new BMap.Point(-122.0840, 37.4220);
+    // 创建点坐标
+    map.centerAndZoom(point, 1);
+    // 初始化地图，设置中心点坐标和地图级别
+
+    document.getElementsByTagName('button')[0].addEventListener('click', function() {
+        window.postMessage('这是html发送到RN的消息');
+    });
+    //接受rn发过来的数据
+    document.addEventListener('message', (e)=> {
+        alert(e.data);
+    });
+</script>
+</body>
+</html>
