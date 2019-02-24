@@ -3519,6 +3519,10 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+
 morgan@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
@@ -4118,6 +4122,10 @@ react-native-camera@^1.11.2:
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.11.2.tgz#d5361d1817090ed89f283d23c5d2e68c52044e2b"
   dependencies:
     prop-types "^15.6.2"
+
+react-native-clear-app-cache@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-clear-app-cache/-/react-native-clear-app-cache-1.0.4.tgz#510cfd1b51025ac4d7adf93c9cc8baf1ba1b3778"
 
 react-native-collapsible@^1.4.0:
   version "1.4.0"

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Sound from 'react-native-sound'
 import { Slider } from '@ant-design/react-native';
+import {httpMusicGet} from '../../http/Http'
 let mp3 = require('../../assets/mp3/fyydys.mp3');//支持众多格式
 //如果是网络音频，使用 new Sound(mp3,null,error => {})
 let whoosh = new Sound(mp3, (error) => {
@@ -21,7 +22,7 @@ export default class mySound extends Component {
         };
         this.progressChange = value=>{
             this._getNowTime(value);
-        }
+        };
         this.state = {
             volume: 0.5,
             seconds: 0, //秒数
@@ -32,7 +33,11 @@ export default class mySound extends Component {
             nowSec: 0, //当前秒钟
             nowProgress:0,//当前进度
             maximumValue: 0, //滑块最大值
-        }
+        };
+        let url='https://api.hibai.cn/api/index/index';
+        httpMusicGet(url).then(res=>{
+            alert(res);
+        })
     }
     componentDidMount(){
         let totalTime = whoosh.getDuration();

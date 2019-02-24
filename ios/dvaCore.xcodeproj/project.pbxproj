@@ -44,6 +44,7 @@
 		150C431F45A642EA90CD6794 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D180362222664619B3584ACC /* libRNSound.a */; };
 		539FABF2B891490AAD1058A2 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8AD75F453094D5AB8F21EF3 /* libRNCamera.a */; };
 		BD6821C0F034446A85E6A17B /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 833D166B462D4B45A6C9FD23 /* libRNImagePicker.a */; };
+		F2F592C438A84063BC834A93 /* libRCTClearCacheModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A785602DDC1F4520A5C88D62 /* libRCTClearCacheModule.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -361,6 +362,8 @@
 		B8AD75F453094D5AB8F21EF3 /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		355A80B99BF1483DB91E68DA /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		833D166B462D4B45A6C9FD23 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		BD76270B8A4C44E591BCF10A /* RCTClearCacheModule.xcodeproj */ = {isa = PBXFileReference; name = "RCTClearCacheModule.xcodeproj"; path = "../node_modules/react-native-clear-app-cache/ios/RCTClearCacheModule.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A785602DDC1F4520A5C88D62 /* libRCTClearCacheModule.a */ = {isa = PBXFileReference; name = "libRCTClearCacheModule.a"; path = "libRCTClearCacheModule.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +396,7 @@
 				150C431F45A642EA90CD6794 /* libRNSound.a in Frameworks */,
 				539FABF2B891490AAD1058A2 /* libRNCamera.a in Frameworks */,
 				BD6821C0F034446A85E6A17B /* libRNImagePicker.a in Frameworks */,
+				F2F592C438A84063BC834A93 /* libRCTClearCacheModule.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +588,7 @@
 				FFF579DBB2774D3EB10244DC /* RNSound.xcodeproj */,
 				095673C5F16A4DD9906F793B /* RNCamera.xcodeproj */,
 				355A80B99BF1483DB91E68DA /* RNImagePicker.xcodeproj */,
+				BD76270B8A4C44E591BCF10A /* RCTClearCacheModule.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1224,6 +1229,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dvaCore.app/dvaCore";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1232,6 +1238,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Debug;
@@ -1253,6 +1260,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dvaCore.app/dvaCore";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1261,6 +1269,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Release;
@@ -1288,6 +1297,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Debug;
@@ -1314,6 +1324,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Release;
@@ -1343,6 +1354,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1351,6 +1363,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Debug;
@@ -1380,6 +1393,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1388,6 +1402,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Release;
@@ -1416,6 +1431,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1424,6 +1440,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Debug;
@@ -1452,6 +1469,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1460,6 +1478,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-clear-app-cache\ios\RCTClearCacheModule",
 				);
 			};
 			name = Release;

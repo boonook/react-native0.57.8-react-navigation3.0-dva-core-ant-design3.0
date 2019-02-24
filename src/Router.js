@@ -20,6 +20,7 @@ import MapLocation from "./components/map/MapLocation";
 import SelectImage from "./components/selectImage/SelectImage";
 import ScanCode from "./components/scanCode/ScanCode";
 import ChartScreen from "./components/chart/ChartScreen";
+import Space from "./components/space/Space";
 
 const {height,width} =  Dimensions.get('window');
 
@@ -68,7 +69,7 @@ const appTabNavigator = createBottomTabNavigator({
 },{
     initialRouteName: 'Message',
     tabBarPosition: 'bottom',
-    lazy: true,
+    lazy: false,//懒加载
     swipeEnabled: false,
     tabBarOptions: {
         activeTintColor: '#0187FB',
@@ -126,6 +127,15 @@ const DrawerNavigator =  createDrawerNavigator({
                 <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             )
         }
+    },
+    Space:{
+        screen:Space,
+        navigationOptions: {
+            drawerLabel:'Space',
+            drawerIcon:({tintColor})=>(
+                <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+            )
+        }
     }
 },{
     initialRouteName: 'Home',
@@ -176,6 +186,12 @@ const CustomDrawerContentComponent = props => {
                     onPress={() => props.navigation.navigate("ChartScreen")}
                 >
                     <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>统计图</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => props.navigation.navigate("Space")}
+                >
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>内存管理</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.btnStyle}
