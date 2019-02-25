@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, ActivityIndicator,StyleSheet,TouchableOpacity,Image } from "react-native";
-import { List, SearchBar,Icon } from "@ant-design/react-native";
+import { List, SearchBar,Icon,SwipeAction } from "@ant-design/react-native";
 
 class FlatListDemo extends Component {
     constructor(props) {
@@ -99,6 +99,20 @@ class FlatListDemo extends Component {
 
     render() {
         const {navigation} = this.props;
+        const right = [
+            {
+                text: 'More',
+                onPress: (data) => {
+                    alert(data)
+                },
+                style: { backgroundColor: 'orange', color: 'white' },
+            },
+            {
+                text: 'Delete',
+                onPress: () => console.log('delete'),
+                style: { backgroundColor: 'red', color: 'white' },
+            },
+        ];
         return (
                 <View>
                     <View style={styles.header}>
@@ -122,9 +136,17 @@ class FlatListDemo extends Component {
                         <FlatList
                             data={this.state.data}
                             renderItem={({ item }) => (
-                                <List.Item thumb={item.picture.thumbnail}>
-                                    {item.name.last}
-                                </List.Item>
+                                <SwipeAction
+                                    autoClose
+                                    style={{ backgroundColor: 'transparent' }}
+                                    right={right}
+                                    onOpen={() => console.log('open')}
+                                    onClose={() => console.log('close')}
+                                >
+                                    <List.Item thumb={item.picture.thumbnail}>
+                                        {item.name.last}
+                                    </List.Item>
+                                </SwipeAction>
                             )}
                             keyExtractor={item => item.email}
                             ItemSeparatorComponent={this.renderSeparator}

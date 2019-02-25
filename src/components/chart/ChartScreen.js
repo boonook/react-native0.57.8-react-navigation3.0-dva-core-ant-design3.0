@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
 
 });
-export default class MapLocation extends Component {
+export default class ChartScreen extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             header: () => null, // 隐藏头部
