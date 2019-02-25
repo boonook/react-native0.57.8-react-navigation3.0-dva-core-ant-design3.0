@@ -115,6 +115,14 @@ export default class LoginScreen extends Component {
                             </Button>
                         </List.Item>
                     </List>
+                    <View style={{flex: 1, flexDirection: 'row',marginTop:20}}>
+                        <View style={{marginLeft:15,}}>
+                            <Image style={{width:30,height:30}} source={require('../../assets/images/qq_2.png')}/>
+                        </View>
+                        <View style={{marginLeft:15}}>
+                            <Image style={{width:30,height:30}} source={require('../../assets/images/weixin.png')}/>
+                        </View>
+                    </View>
                 </View>
                 {/*<Button*/}
                     {/*title="Learn More"*/}
