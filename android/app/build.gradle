@@ -137,6 +137,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-pdf')
+    compile project(':rn-fetch-blob')
     compile project(':react-native-clear-app-cache')
     compile project(':react-native-image-picker')
     compile project(':react-native-camera')

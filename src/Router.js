@@ -21,6 +21,7 @@ import SelectImage from "./components/selectImage/SelectImage";
 import ScanCode from "./components/scanCode/ScanCode";
 import ChartScreen from "./components/chart/ChartScreen";
 import Space from "./components/space/Space";
+import PdfRead from "./components/pdf/PdfRead";
 
 const {height,width} =  Dimensions.get('window');
 
@@ -136,6 +137,15 @@ const DrawerNavigator =  createDrawerNavigator({
                 <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
             )
         }
+    },
+    PdfRead:{
+        screen:PdfRead,
+        navigationOptions: {
+            drawerLabel:'PdfRead',
+            drawerIcon:({tintColor})=>(
+                <Image name={'drafts'} size={24} source={require('./assets/images/book.png')}  style={[styles.tabBarImage,{tintColor: tintColor}]}/>
+            )
+        }
     }
 },{
     initialRouteName: 'Home',
@@ -192,6 +202,12 @@ const CustomDrawerContentComponent = props => {
                     onPress={() => props.navigation.navigate("Space")}
                 >
                     <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>内存管理</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnStyle}
+                    onPress={() => props.navigation.navigate("PdfRead")}
+                >
+                    <Text style={{fontSize:18}}><Icon style={{color:'#000',fontSize:18,paddingRight:10}} name={'scan'}/>Pdf预览</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.btnStyle}

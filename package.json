@@ -19,10 +19,12 @@
     "react-native-clear-app-cache": "^1.0.4",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-image-picker": "^0.28.0",
+    "react-native-pdf": "^5.0.11",
     "react-native-sound": "^0.10.12",
     "react-native-video": "3.2.1",
     "react-navigation": "^3.0.9",
-    "react-redux": "^6.0.0"
+    "react-redux": "^6.0.0",
+    "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

@@ -76,7 +76,7 @@ export default class LoginScreen extends Component {
                             }}
                             placeholder="账号"
                         >
-                            <Icon name={'github'} />
+                            <Icon name={'github'}><Text style={{fontSize:14}}>姓名</Text></Icon>
                         </InputItem>
                         <InputItem
                             clear

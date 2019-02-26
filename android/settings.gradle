@@ -1,4 +1,8 @@
 rootProject.name = 'dvaCore'
+include ':react-native-pdf'
+project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pdf/android')
+include ':rn-fetch-blob'
+project(':rn-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/rn-fetch-blob/android')
 include ':react-native-clear-app-cache'
 project(':react-native-clear-app-cache').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-clear-app-cache/android')
 include ':react-native-image-picker'
