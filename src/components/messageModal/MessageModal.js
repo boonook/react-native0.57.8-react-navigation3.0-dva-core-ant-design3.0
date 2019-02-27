@@ -67,6 +67,10 @@ export class BasicModalExample extends React.Component {
                     visible={this.state.visible2}
                     animationType="slide-up"
                     onClose={this.onClose2}
+                    style={{
+                        borderTopLeftRadius:10,
+                        borderTopRightRadius:10
+                    }}
                 >
                     <View style={{
                         flex: 1,

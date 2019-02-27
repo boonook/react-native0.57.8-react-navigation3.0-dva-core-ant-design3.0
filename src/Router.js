@@ -22,6 +22,7 @@ import ScanCode from "./components/scanCode/ScanCode";
 import ChartScreen from "./components/chart/ChartScreen";
 import Space from "./components/space/Space";
 import PdfRead from "./components/pdf/PdfRead";
+import Mp3Detail from "./screen/map3/Mp3Detail";
 
 const {height,width} =  Dimensions.get('window');
 
@@ -232,6 +233,9 @@ const  StackNavigator = createStackNavigator({
     },
     Registered:{
         screen:Registered
+    },
+    Mp3Detail:{
+        screen:Mp3Detail
     }
 },{
     headerMode: 'none',
